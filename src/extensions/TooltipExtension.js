@@ -21,7 +21,7 @@ const Tooltip = Mark.create({
   },
 
   renderHTML({ HTMLAttributes }) {
-    const { title, ...rest } = HTMLAttributes; // Exclude 'title' from inner content
+    const { title, ...rest } = HTMLAttributes; 
     return ["span", mergeAttributes(rest, { "data-tooltip": title }), 0];
   },
 

@@ -13,21 +13,20 @@ const App = () => {
     content: '<p>Hello <span data-tooltip="This is a tooltip">world</span></p>',
   });
 
-  // Function to check if the selected text has a tooltip
   const getTooltipFromSelection = () => {
     const { state } = editor;
     const { selection } = state;
     const { from, to } = selection;
 
     if (from !== to) {
-      const selectedText = editor.state.doc.slice(from, to); // Get selected text range
+      const selectedText = editor.state.doc.slice(from, to); 
       let tooltip = null;
 
       selectedText.forEach((node) => {
         if (node.marks) {
           node.marks.forEach((mark) => {
             if (mark.type.name === "tooltip") {
-              tooltip = mark.attrs.title; // Extract tooltip text
+              tooltip = mark.attrs.title; 
             }
           });
         }
@@ -38,20 +37,18 @@ const App = () => {
     return null;
   };
 
-  // Update the input field whenever the selection changes
   const handleSelectionChange = () => {
     const existingTooltip = getTooltipFromSelection();
     if (existingTooltip) {
-      setTooltipText(existingTooltip); // Set tooltip text to input if selected text has a tooltip
+      setTooltipText(existingTooltip); 
     } else {
-      setTooltipText(""); // Clear input if no tooltip is found
+      setTooltipText(""); 
     }
   };
 
-  // Monitor editor selection changes
   useEffect(() => {
     if (editor) {
-      editor.on("selectionUpdate", handleSelectionChange); // Listen for selection updates
+      editor.on("selectionUpdate", handleSelectionChange); 
     }
   }, [editor]);
 
